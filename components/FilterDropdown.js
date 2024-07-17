@@ -20,13 +20,13 @@ const FilterDropdown = ({ setWeek }) => {
       .from('distinct_week')
         .select('*')
       setWeeks(data.map(item => item.week))
-      console.log(error)
+      console.log('Fetched Weeks: ', data.map(item => item.week ))
     }
     fetchWeeks()
   }, [])
 
   return (
-    <Select onChange={(e) => setWeek(e.target.value)} className="mb-4 p-2 border">
+    <Select onChange={(e) =>setWeek(e.target.value)} className="mb-4 p-2 border">
         <SelectTrigger className="w-[280px]">
         <SelectValue placeholder="Select date" />
       </SelectTrigger>
