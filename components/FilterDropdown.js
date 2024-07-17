@@ -7,6 +7,8 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
+    SelectGroup,
+    SelectLabel,
     SelectValue,
   } from "@/components/ui/select"
 
@@ -25,17 +27,32 @@ const FilterDropdown = ({ setWeek }) => {
     fetchWeeks()
   }, [])
 
+  const handleChange = (value) => {
+    console.log("Selected week :", value)
+    setWeek(value)
+  }
+
   return (
-    <Select onChange={(e) =>setWeek(e.target.value)} className="mb-4 p-2 border">
+    <Select onValueChange={handleChange} className="mb-4 p-2 border">
         <SelectTrigger className="w-[280px]">
         <SelectValue placeholder="Select date" />
       </SelectTrigger>
       <SelectContent>
+        <SelectGroup>
+      <SelectLabel>Weeks</SelectLabel>
       {weeks.sort().reverse().map(week => (
         <SelectItem key={week} value={week}>{week}</SelectItem>
       ))}
+        </SelectGroup>
       </SelectContent>
+      
     </Select>
+  //   <select onChange={handleChange} className="mb-4 p-2 border">
+  //   {weeks.sort().reverse().map(week => (
+  //     <option key={week} value={week}>{week}</option>
+  //   ))}
+  // </select>
+
   )
 }
 
